@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Translation file completeness checker in your browser. Review the result and export it locally without uploading your input.">
+<title>Translation file completeness checker | GlossQuote</title>
+<link rel="stylesheet" href="/styles/app.css">
+<script type="module" src="/js/app.mjs"></script>
+</head>
+<body>
+<a class="skip-link" href="#workspace">Skip to workspace</a>
+<header class="topbar"><a class="brand" href="https://glossquote.com/en/index.html">Gloss Tools <span>by GlossQuote</span></a><nav aria-label="Tool navigation"><a href="https://glossquote.com/en/index.html">All tools</a><a href="/index.html" lang="zh-Hant" hreflang="zh-Hant" aria-describedby="privacy">繁體中文</a></nav></header>
+<main id="workspace">
+<div class="intro"><p class="preview">Local candidate preview</p><h1>Translation file completeness checker</h1><p>Before a website launch, compare a reference locale JSON with its translation. Find missing and extra keys, type conflicts and broken placeholders, then download a report of what needs attention.</p><p id="privacy" class="muted">Input stays in this page’s memory; it is not uploaded or automatically saved. Switching languages or leaving the page discards data you have not exported.</p></div>
+<p id="boot-notice" class="notice">Preparing local checking. If this message remains, use a browser with native modules, TextEncoder and TextDecoder. There is no cloud fallback.</p><noscript><p class="notice">Enable JavaScript and native modules to check locally. All actions are currently disabled. Processing will not switch to a cloud service.</p></noscript>
+<form id="check-form" novalidate>
+<div class="section-heading"><h2>Compare two locale files</h2><button id="load-example" type="button" class="secondary" aria-describedby="sample-help" disabled>Load fictional example</button></div>
+<p id="sample-help" class="muted small">This example uses fictional data. Existing content requires replacement confirmation.</p><p id="source-help" class="muted">Paste text or choose your own UTF-8 JSON file. Each input: up to 1 MiB and 5,000 strings.</p>
+<div class="sources"><section class="source-field" aria-labelledby="reference-label">
+<div class="field-heading"><label id="reference-label" for="reference">Reference JSON</label><button id="reference-clear" type="button" class="quiet" disabled>Clear this field</button></div>
+<textarea id="reference" rows="11" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="source-help reference-error" disabled></textarea>
+<div class="file-field"><label for="reference-file">Choose a JSON file</label><input id="reference-file" type="file" accept=".json,application/json" aria-describedby="source-help reference-error" disabled></div>
+<p id="reference-error" class="field-error" hidden></p></section><section class="source-field" aria-labelledby="target-label">
+<div class="field-heading"><label id="target-label" for="target">Translation JSON</label><button id="target-clear" type="button" class="quiet" disabled>Clear this field</button></div>
+<textarea id="target" rows="11" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="source-help target-error" disabled></textarea>
+<div class="file-field"><label for="target-file">Choose a JSON file</label><input id="target-file" type="file" accept=".json,application/json" aria-describedby="source-help target-error" disabled></div>
+<p id="target-error" class="field-error" hidden></p></section></div>
+<div class="settings"><div><label for="syntax">Placeholder syntax</label><select id="syntax" aria-describedby="syntax-help settings-error" disabled><option value="single">Single braces {name}</option><option value="double">Double braces {{name}}</option></select></div><p id="syntax-help" class="muted small">Choose one syntax. Names are case sensitive and occurrence counts must match. Names start with an ASCII letter or underscore and may include digits. ICU, plural and %s are not supported. Unknown braces are flagged for manual review.</p></div>
+<p id="settings-error" class="field-error" hidden></p>
+<div class="actions"><button id="check" type="submit" class="primary" disabled>Check translations</button><button id="clear-all" type="button" class="quiet" disabled>Clear the whole page</button><button id="cancel-read" type="button" class="secondary" hidden>Cancel file read</button></div>
+</form>
+<section id="import-confirm" class="notice" aria-labelledby="import-heading" hidden><h2 id="import-heading">Confirm replacement</h2><p id="import-message"></p><div class="actions"><button id="accept-import" class="primary" type="button">Replace this field</button><button id="keep-import" class="secondary" type="button">Keep existing content</button></div></section>
+<section id="example-confirm" class="notice" aria-labelledby="example-heading" hidden><h2 id="example-heading">Confirm replacement</h2><p>The example will replace both fields and switch to single-brace syntax. Existing content will not be automatically saved.</p><div class="actions"><button id="accept-example" class="primary" type="button">Replace both fields with example</button><button id="keep-example" class="secondary" type="button">Keep existing content</button></div></section>
+<p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Add data to begin: paste both JSON files or load the labeled fictional example.</p>
+<section id="results" aria-labelledby="results-heading" hidden>
+<div class="section-heading"><h2 id="results-heading">Difference report</h2></div>
+<dl class="counts"><div><dt>Missing keys</dt><dd id="count-missing">0</dd></div><div><dt>Extra keys</dt><dd id="count-extra">0</dd></div><div><dt>Type conflicts</dt><dd id="count-types">0</dd></div><div><dt>Variable differences</dt><dd id="count-variables">0</dd></div><div><dt>Review warnings</dt><dd id="count-review">0</dd></div></dl>
+<div class="filter-line"><label for="filter">Show items</label><select id="filter" aria-describedby="filter-help" disabled><option value="all">All differences and warnings</option><option value="needs-fix">Only differences to fix</option><option value="missing">Missing keys</option><option value="extra">Extra keys</option><option value="type-conflict">Type conflicts</option><option value="variables">Variable differences</option><option value="review">Review warnings</option></select></div><p id="filter-help" class="muted small">Filters affect only the list below. Empty translations, unchanged text and unsupported syntax are warnings, not confirmed errors.</p>
+<p id="visible-count" class="small"></p><p id="no-matches" class="notice" hidden></p>
+<div id="table-region" class="table-region" role="region" aria-label="Horizontally scrollable difference list" tabindex="0"><table><caption>Differences follow reference order. Extra keys follow translation order at the end.</caption><thead><tr><th scope="col">Issue and explanation</th><th scope="col">Path segments</th><th scope="col">Reference text</th><th scope="col">Translation text</th></tr></thead><tbody id="issue-rows"></tbody></table></div>
+<div class="pagination"><button id="previous-page" type="button" disabled>Previous page</button><span id="page-label"></span><button id="next-page" type="button" disabled>Next page</button></div>
+<section class="exports" aria-labelledby="export-heading"><h3 id="export-heading">Get the complete report</h3><p class="muted small">Both formats contain the complete report, regardless of filters. UTF-8 without BOM and fixed filenames. TXT uses stable field names and error codes for handoff.</p><div class="actions"><button id="download-json" type="button" class="secondary" disabled>Download JSON</button><button id="download-txt" type="button" class="secondary" disabled>Download TXT</button></div><p id="export-status" role="status" class="small"></p>
+<details id="full-report"><summary>Expand complete JSON text (select it to save manually)</summary><label for="report-text">Complete JSON report text</label><textarea id="report-text" rows="10" readonly spellcheck="false"></textarea><button id="select-report" type="button" disabled>Select complete report</button></details></section>
+</section>
+<section class="help" aria-labelledby="limits-heading"><h2 id="limits-heading">Format and limits</h2><p>The root must be an object and leaves must be strings. Empty objects are valid; only string leaves are compared, so empty objects are not treated as strings. Each input: 32 object levels (root = 1), 10,000 properties, 200 UTF-16 code units per key and 16,384 per string. Duplicate decoded keys, unsafe keys, unpaired surrogates, arrays, null, numbers and booleans reject the entire input.</p><p>Paths use independent segments: ["a.b"] differs from ["a","b"]. A string/object conflict is listed at the parent path; descendant missing/extra keys are suppressed. Numeric-looking keys keep their original input order.</p><p>Processing uses device memory and stops at the limits. Clear removes this page’s data and download links, not files already downloaded. It does not promise secure erasure of browser or system memory.</p><h2>Frequently asked questions</h2><details><summary>Does this assess translation quality?</summary><p>No. It checks keys and supported placeholder syntax, not linguistic quality.</p></details><details><summary>Is ICU supported?</summary><p>No. Unsupported brace syntax is flagged for review. %s is not a supported placeholder syntax.</p></details><details><summary>Is unchanged text an error?</summary><p>No. Names and numbers may intentionally match; this is a review warning. Empty translations are also warnings for you to assess in context.</p></details></section>
+</main><footer>Gloss Tools by GlossQuote · Preview awaiting browser acceptance</footer>
+</body>
+</html>

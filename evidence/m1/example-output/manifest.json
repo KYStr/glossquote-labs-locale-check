@@ -1,0 +1,38 @@
+{
+  "scope": "Actual offline Blob bytes from the real controller; fictional inputs only. Not a browser download gate.",
+  "expectedCounts": {
+    "referenceLeaves": 6,
+    "targetLeaves": 6,
+    "missing": 1,
+    "extra": 1,
+    "typeConflicts": 1,
+    "variables": 2,
+    "review": 2,
+    "errors": 5,
+    "missingVariables": 2,
+    "extraVariables": 1,
+    "total": 7
+  },
+  "files": [
+    {
+      "path": "reference.fake.json",
+      "bytes": 155,
+      "sha256": "c70904f8a088f47199e4cb3a469b6d5b99025026965fd5f18dd0ffad1a7746cf"
+    },
+    {
+      "path": "translation.fake.json",
+      "bytes": 159,
+      "sha256": "54f98b48514527128675f50cb4eb6ed858a7056eb02277420fe44381d0d405bd"
+    },
+    {
+      "path": "locale-check-report.json",
+      "bytes": 2092,
+      "sha256": "ee91c29a00454ec81baa727ee371f6f622b0b8c31c084030a0993c5864337a09"
+    },
+    {
+      "path": "locale-check-report.txt",
+      "bytes": 1107,
+      "sha256": "f0f51a6a303973a489556479d5bc27f646809f9a53368bfcba071d4d20b867c9"
+    }
+  ]
+}

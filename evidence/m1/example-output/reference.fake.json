@@ -1,0 +1,7 @@
+{
+  "welcome": "Hello {name}",
+  "menu": { "save": "Save", "cancel": "Cancel" },
+  "brand": "Demo Brand",
+  "count": "{n} + {n}",
+  "profile": "Profile"
+}

@@ -1,0 +1,41 @@
+GlossQuote translation file completeness report
+Schema: 1
+Syntax: single
+Scope: complete report; display filters do not apply.
+Warnings require human review; this report does not assess linguistic quality.
+referenceLeaves: 6
+targetLeaves: 6
+missing: 1
+extra: 1
+typeConflicts: 1
+variables: 2
+review: 2
+errors: 5
+missingVariables: 2
+extraVariables: 1
+total: 7
+
+ERROR VARIABLE_MISMATCH ["welcome"]
+  referenceValue: "Hello {name}"
+  targetValue: "你好 {user}"
+  missingVariables: [{"name":"name","count":1}]
+  extraVariables: [{"name":"user","count":1}]
+WARNING EMPTY_TRANSLATION ["menu","save"]
+  referenceValue: "Save"
+  targetValue: ""
+ERROR MISSING_KEY ["menu","cancel"]
+  referenceValue: "Cancel"
+WARNING SAME_AS_REFERENCE ["brand"]
+  referenceValue: "Demo Brand"
+  targetValue: "Demo Brand"
+ERROR VARIABLE_MISMATCH ["count"]
+  referenceValue: "{n} + {n}"
+  targetValue: "{n}"
+  missingVariables: [{"name":"n","count":1}]
+  extraVariables: []
+ERROR TYPE_CONFLICT ["profile"]
+  referenceType: "string"
+  targetType: "object"
+  referenceValue: "Profile"
+ERROR EXTRA_KEY ["old"]
+  targetValue: "舊文字"

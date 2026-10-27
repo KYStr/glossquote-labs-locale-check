@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "syntax": "single",
+  "counts": {
+    "referenceLeaves": 6,
+    "targetLeaves": 6,
+    "missing": 1,
+    "extra": 1,
+    "typeConflicts": 1,
+    "variables": 2,
+    "review": 2,
+    "errors": 5,
+    "missingVariables": 2,
+    "extraVariables": 1,
+    "total": 7
+  },
+  "issues": [
+    {
+      "kind": "variables",
+      "severity": "error",
+      "code": "VARIABLE_MISMATCH",
+      "path": [
+        "welcome"
+      ],
+      "referenceValue": "Hello {name}",
+      "targetValue": "你好 {user}",
+      "missingVariables": [
+        {
+          "name": "name",
+          "count": 1
+        }
+      ],
+      "extraVariables": [
+        {
+          "name": "user",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "review",
+      "severity": "warning",
+      "code": "EMPTY_TRANSLATION",
+      "path": [
+        "menu",
+        "save"
+      ],
+      "referenceValue": "Save",
+      "targetValue": ""
+    },
+    {
+      "kind": "missing",
+      "severity": "error",
+      "code": "MISSING_KEY",
+      "path": [
+        "menu",
+        "cancel"
+      ],
+      "referenceValue": "Cancel"
+    },
+    {
+      "kind": "review",
+      "severity": "warning",
+      "code": "SAME_AS_REFERENCE",
+      "path": [
+        "brand"
+      ],
+      "referenceValue": "Demo Brand",
+      "targetValue": "Demo Brand"
+    },
+    {
+      "kind": "variables",
+      "severity": "error",
+      "code": "VARIABLE_MISMATCH",
+      "path": [
+        "count"
+      ],
+      "referenceValue": "{n} + {n}",
+      "targetValue": "{n}",
+      "missingVariables": [
+        {
+          "name": "n",
+          "count": 1
+        }
+      ],
+      "extraVariables": []
+    },
+    {
+      "kind": "type-conflict",
+      "severity": "error",
+      "code": "TYPE_CONFLICT",
+      "path": [
+        "profile"
+      ],
+      "referenceType": "string",
+      "targetType": "object",
+      "referenceValue": "Profile"
+    },
+    {
+      "kind": "extra",
+      "severity": "error",
+      "code": "EXTRA_KEY",
+      "path": [
+        "old"
+      ],
+      "targetValue": "舊文字"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "welcome": "你好 {user}",
+  "menu": { "save": "" },
+  "brand": "Demo Brand",
+  "count": "{n}",
+  "profile": { "name": "姓名" },
+  "old": "舊文字"
+}
